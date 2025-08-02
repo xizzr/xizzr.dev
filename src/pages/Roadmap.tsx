@@ -133,7 +133,6 @@ export const Roadmap = () => {
               variant="bump"
               size="xl"
               onClick={handleBump}
-              className="animate-float"
             >
               <Zap className="w-6 h-6 mr-2" />
               Bump!
