@@ -1,0 +1,6 @@
+name = "your-worker-name"
+compatibility_date = "2025-08-02"
+
+[site]
+bucket = "./dist"
+entry-point = "workers-site"
