@@ -16,10 +16,10 @@ const mockProjects = [
 export const Homepage = () => {
   const { toast } = useToast();
 
-  const handleViewProject = (projectName: string) => {
+  const handleViewProject = (projectId: number) => {
     toast({
       title: "Project Viewer",
-      description: `You're on the ${projectName} already!`,
+      description: `You're on the portfolio already!`,
     });
   };
 
