@@ -90,7 +90,7 @@ export const Roadmap = () => {
 
   const handleBump = () => {
     toast({
-      title: "Bump! 🚀",
+      title: "Bump!",
       description: "Progress updated! Keep pushing forward on your learning journey.",
     });
   };
