@@ -91,10 +91,14 @@ export const Homepage = () => {
           </div>
 
           {/* Projects Section */}
+          <div
+          className="flex-shrink-0 opacity-0 animate-fade-in"
+          style={{ animationDelay: "0.1s", animationFillMode: "forwards" }}>
           <div className="px-4">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-neon bg-clip-text text-transparent">
               Featured Projects
             </h2>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {mockProjects.map((project, index) => (
