@@ -45,23 +45,17 @@ const roadmapItems = [
     icon: Database,
     title: "Databases",
     description: "Data Management",
-    isCompleted: false
+    isCompleted: true
   },
   {
     icon: Cloud,
-    title: "AWS/Cloud",
+    title: "AWS",
     description: "Cloud Services",
     isCompleted: false
   },
   {
-    icon: Smartphone,
-    title: "Mobile Dev",
-    description: "Cross-platform",
-    isCompleted: false
-  },
-  {
     icon: Brain,
-    title: "AI/ML",
+    title: "AI",
     description: "Machine Learning",
     isCompleted: false
   },
@@ -72,15 +66,9 @@ const roadmapItems = [
     isCompleted: false
   },
   {
-    icon: Shield,
-    title: "Security",
-    description: "Cybersecurity",
-    isCompleted: false
-  },
-  {
-    icon: Cpu,
-    title: "DevOps",
-    description: "Deployment",
+    icon: Brain,
+    title: "And more...",
+    description: "...",
     isCompleted: false
   }
 ];
@@ -90,8 +78,8 @@ export const Roadmap = () => {
 
   const handleBump = () => {
     toast({
-      title: "Bump!",
-      description: "Progress updated! Keep pushing forward on your learning journey.",
+      title: "Bumped!",
+      description: "Bumped xizzr! I truly hope he'll notice it...",
     });
   };
 
@@ -101,13 +89,12 @@ export const Roadmap = () => {
       
       <main className="pt-24 pb-96 px-6">
         <div className="max-w-7xl mx-auto">
-          {/* Hero Section */}
           <div className="text-center mb-16 px-4 relative z-50">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-neon bg-clip-text text-transparent animate-fade-in leading-[1.2] pb-2">
               Learning Roadmap
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in leading-relaxed">
-              Track your progress through the development learning journey
+              My progress in software engineering
             </p>
           </div>
 
@@ -152,7 +139,7 @@ export const Roadmap = () => {
               Bump!
             </Button>
             <p className="text-sm text-muted-foreground mt-4">
-              Update your progress and celebrate achievements
+              Remind me to work or study
             </p>
           </div>
         </div>

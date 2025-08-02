@@ -119,7 +119,7 @@ export default {
 						transform: 'translateY(0px)'
 					},
 					'50%': {
-						transform: 'translateY(-2px)'
+						transform: 'translateY(-1px)'
 					}
 				}
 			},

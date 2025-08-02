@@ -97,7 +97,7 @@ export const Homepage = () => {
                     </h2>
                     <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
                       Passionate backend developer with expertise in modern web technologies. 
-                      I love creating elegant solutions to complex problems and building 
+                      I create elegant solutions to complex problems and building 
                       user-centric applications.
                     </p>
                     
@@ -105,7 +105,7 @@ export const Homepage = () => {
                     <div>
                       <h3 className="text-xl font-semibold mb-4 text-foreground">Tech Stack</h3>
                       <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                        {["React", "TypeScript", "Node.js", "Python", "PostgreSQL", "AWS", "Docker", "Tailwind CSS"].map((tech) => (
+                        {["React", "TypeScript", "Node.js", "Python", "PostgreSQL", "Docker",  "C#", ".Net", "DBs"].map((tech) => (
                           <span
                             key={tech}
                             className="px-3 py-1 bg-secondary/50 border border-border/30 rounded-full text-sm text-secondary-foreground hover:bg-secondary/80 transition-colors"
