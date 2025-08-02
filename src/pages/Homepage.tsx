@@ -40,6 +40,9 @@ export const Homepage = () => {
           </div>
 
           <div className="mb-20 px-4">
+            <div
+          className="flex-shrink-0 opacity-0 animate-fade-in"
+          style={{ animationDelay: "0.1s", animationFillMode: "forwards" }}>
             <div className="max-w-4xl mx-auto">
               <div className="bg-gradient-card border border-border/50 rounded-2xl p-8 md:p-12 shadow-card backdrop-blur-sm">
                 <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
@@ -83,6 +86,7 @@ export const Homepage = () => {
                   </div>
                 </div>
               </div>
+            </div>
             </div>
           </div>
 
