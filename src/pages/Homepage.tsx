@@ -54,6 +54,7 @@ export const Homepage = () => {
                           alt="Profile"
                           className="object-cover w-full h-full rounded-full"
                         />
+
                       </div>
                     </div>
                   </div>
