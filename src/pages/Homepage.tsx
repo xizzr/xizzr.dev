@@ -6,46 +6,11 @@ import { useToast } from "@/hooks/use-toast";
 const mockProjects = [
   {
     id: 1,
-    title: "E-Commerce Platform",
-    languages: ["React", "Node.js", "MongoDB"],
-    description: "A full-stack e-commerce platform with user authentication, payment processing, and real-time inventory management.",
-    difficulty: 4,
-  },
-  {
-    id: 2,
-    title: "Weather Dashboard",
-    languages: ["JavaScript", "API", "CSS"],
-    description: "Interactive weather dashboard with location-based forecasts, historical data visualization, and responsive design.",
-    difficulty: 2,
-  },
-  {
-    id: 3,
-    title: "Task Management App",
-    languages: ["React", "TypeScript", "Supabase"],
-    description: "Collaborative task management application with real-time updates, team features, and advanced filtering options.",
-    difficulty: 3,
-  },
-  {
-    id: 4,
     title: "Portfolio Website",
-    languages: ["Next.js", "Tailwind", "Framer"],
-    description: "Modern portfolio website with smooth animations, responsive design, and optimized performance.",
+    languages: ["React", "Typescript", "TailwindCSS"],
+    description: "A simple portfolio website to display my projects and learning progress.",
     difficulty: 2,
-  },
-  {
-    id: 5,
-    title: "AI Chat Bot",
-    languages: ["Python", "OpenAI", "Flask"],
-    description: "Intelligent chatbot powered by AI with natural language processing and context-aware conversations.",
-    difficulty: 5,
-  },
-  {
-    id: 6,
-    title: "Expense Tracker",
-    languages: ["Vue.js", "Firebase", "Chart.js"],
-    description: "Personal finance tracker with expense categorization, budget planning, and insightful analytics.",
-    difficulty: 3,
-  },
+  }
 ];
 
 export const Homepage = () => {
@@ -54,7 +19,7 @@ export const Homepage = () => {
   const handleViewProject = (projectId: number) => {
     toast({
       title: "Project Viewer",
-      description: `Opening project ${projectId} - This would navigate to the project details!`,
+      description: `You're on the ${projectId} already!`,
     });
   };
 
@@ -127,7 +92,6 @@ export const Homepage = () => {
               Featured Projects
             </h2>
 
-          {/* Projects Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {mockProjects.map((project, index) => (
               <div
