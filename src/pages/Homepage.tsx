@@ -16,10 +16,10 @@ const mockProjects = [
 export const Homepage = () => {
   const { toast } = useToast();
 
-  const handleViewProject = (projectId: number) => {
+  const handleViewProject = (projectName: string) => {
     toast({
       title: "Project Viewer",
-      description: `You're on the ${projectId} already!`,
+      description: `You're on the ${projectName} already!`,
     });
   };
 
@@ -47,7 +47,7 @@ export const Homepage = () => {
                     <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-neon p-1 shadow-glow-soft">
                       <div className="w-full h-full rounded-full bg-muted flex items-center justify-center overflow-hidden">
                         <img
-                          src="pfp"
+                          src="pfp.png"
                           alt="Profile"
                           className="object-cover w-full h-full rounded-full"
                         />
