@@ -67,7 +67,7 @@ export const Homepage = () => {
                     <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
                       Passionate backend developer with expertise in modern web technologies. 
                       I create elegant solutions to complex problems and building 
-                      user-centric applications.
+                      user-centric applications. Fluent in English, Native Ukrainian.
                     </p>
                     
                     {/* Tech Stack */}
@@ -90,6 +90,60 @@ export const Homepage = () => {
             </div>
             </div>
           </div>
+
+                    <div className="mb-20 px-4">
+  <div
+    className="flex-shrink-0 opacity-0 animate-fade-in"
+    style={{ animationDelay: "0.1s", animationFillMode: "forwards" }}
+  >
+    <div className="max-w-xl mx-auto">
+      <div className="bg-gradient-card border border-border/50 rounded-2xl p-8 shadow-card backdrop-blur-sm text-center">
+        <h2 className="text-3xl font-bold mb-4 bg-gradient-neon bg-clip-text text-transparent">
+          Contact Me
+        </h2>
+        <p className="text-muted-foreground mb-6">
+          Feel free to reach out through any of the platforms below.
+        </p>
+
+        <div className="space-y-4 text-base">
+          {/* Telegram */}
+          <div className="group">
+            <span className="font-semibold text-white">Telegram:</span>{" "}
+            <a
+              href="https://t.me/xizzr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-white transition-all duration-200 group-hover:font-bold group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-neon"
+            >
+              @xizzr
+            </a>
+          </div>
+
+          {/* Discord */}
+          <div className="group">
+            <span className="font-semibold text-white">Discord:</span>{" "}
+            <span
+              className="inline-block text-white select-none cursor-default transition-all duration-200 group-hover:font-bold group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-neon"
+            >
+              xizzr.
+            </span>
+          </div>
+
+          {/* Email */}
+          <div className="group">
+            <span className="font-semibold text-white">Email:</span>{" "}
+            <a
+              href="mailto:xizzr.dev@gmail.com"
+              className="inline-block text-white transition-all duration-200 group-hover:font-bold group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-neon"
+            >
+              xizzr.dev@gmail.com
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
           {/* Projects Section */}
           <div
