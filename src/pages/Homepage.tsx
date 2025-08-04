@@ -7,8 +7,15 @@ const mockProjects = [
   {
     id: 1,
     title: "Portfolio Website",
-    languages: ["React", "Typescript", "TailwindCSS"],
+    languages: ["React", "Typescript", "TailwindCSS", "NodeJS"],
     description: "A simple portfolio website to display my projects and learning progress.",
+    difficulty: 2,
+  },
+  {
+    id: 2,
+    title: "Custom Discord Music RP",
+    languages: ["Python", "JavaScript"],
+    description: "A simple program written with Python & Javascript to simulate a custom YTM/Soundcloud RichPresence in Discord, similarly to Spotify.",
     difficulty: 2,
   }
 ];
@@ -17,10 +24,12 @@ export const Homepage = () => {
   const { toast } = useToast();
 
   const handleViewProject = (projectId: number) => {
-    toast({
-      title: "Project Viewer",
-      description: `You're on the portfolio already!`,
-    });
+    if (projectId === 1) {
+      window.location.href = "https://xizzr.dev";
+    }
+    if (projectId === 2) {
+      window.location.href = "https://github.com/xizzr/Youtube-Music-RPC";
+    }
   };
 
   return (
@@ -35,7 +44,7 @@ export const Homepage = () => {
               Welcome!
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in leading-relaxed">
-              Backend developer with two years of experience
+              Software Engineer with two years of experience
             </p>
           </div>
 
@@ -74,7 +83,7 @@ export const Homepage = () => {
                     <div>
                       <h3 className="text-xl font-semibold mb-4 text-foreground">Tech Stack</h3>
                       <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                        {["React", "TypeScript", "Node.js", "Python", "PostgreSQL", "Docker",  "C#", ".Net", "DBs"].map((tech) => (
+                        {["React", "TypeScript", "Node.js", "Python", "LuaU", "Rust", "PostgreSQL", "Docker",  "C#", ".Net", "DBs"].map((tech) => (
                           <span
                             key={tech}
                             className="px-3 py-1 bg-secondary/50 border border-border/30 rounded-full text-sm text-secondary-foreground hover:bg-secondary/80 transition-colors"
