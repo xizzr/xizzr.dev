@@ -15,7 +15,7 @@ const mockProjects = [
     id: 2,
     title: "Custom Discord Music RP",
     languages: ["Python", "JavaScript"],
-    description: "A simple program written with Python & Javascript to simulate a custom YTM/Soundcloud RichPresence in Discord, similarly to Spotify.",
+    description: "A simple Python & Javascript app to simulate a custom YTM/Soundcloud RichPresence in Discord, similarly to Spotify.",
     difficulty: 2,
   }
 ];
@@ -25,10 +25,10 @@ export const Homepage = () => {
 
   const handleViewProject = (projectId: number) => {
     if (projectId === 1) {
-      window.location.href = "https://xizzr.dev";
+      window.open("https://xizzr.dev", "_blank");
     }
     if (projectId === 2) {
-      window.location.href = "https://github.com/xizzr/Youtube-Music-RPC";
+      window.open("https://github.com/xizzr/Youtube-Music-RPC", "_blank");
     }
   };
 
