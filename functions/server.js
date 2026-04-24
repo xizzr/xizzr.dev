@@ -11,32 +11,34 @@ export async function onRequest(context) {
     const command = await env.SERVER_KV.get('server:command') || '';
     const config = await env.SERVER_KV.get('server:config') || '{}';
     await env.SERVER_KV.put('server:command', '');
-    return Response.json({command,config: JSON.parse(config)});
-  };
+    return Response.json({command, config: JSON.parse(config)});
+  }
+
   if(url.pathname === '/agent/status' && request.method === 'POST') {
     if(request.headers.get('agentSecret') !== SECRET)
       return new Response('Forbidden', {status:403});
     
-    const {status,ip} = await request.json();
+    const {status, ip} = await request.json();
     await env.SERVER_KV.put('server:ip', ip || '');
+    await env.SERVER_KV.put('server:status', status || 'unknown');
     return Response.json({ok:true});
-  };
+  }
 
   if(url.pathname === '/server/status'){
     const status = await env.SERVER_KV.get('server:status') || 'offline';
     const ip = await env.SERVER_KV.get('server:ip') || null;
-    return Response.json({status,ip});
-  };
+    return Response.json({status, ip});
+  }
 
   if(url.pathname === '/server/command' && request.method === 'POST'){
-    const {command,config} = await request.json();
-    await env.SERVER_KV.put('server:command',command);
+    const {command, config} = await request.json();
+    await env.SERVER_KV.put('server:command', command);
     await env.SERVER_KV.put('server:config', JSON.stringify(config));
-    await env.SERVER_KV.put('server:status', command === 'start' ? 'starting': 'stopping');
-    return Response.json({ok:true})
-  };
+    await env.SERVER_KV.put('server:status', command === 'start' ? 'starting' : 'stopping');
+    return Response.json({ok:true});
+  }
 
-  try {
+    try {
     const url = new URL(context.request.url);
     const params = Object.fromEntries(url.searchParams);
 
@@ -74,4 +76,6 @@ export async function onRequest(context) {
     console.error("ERROR:", err);
     return new Response("Internal Error", { status: 500 });
   }
+
+  return Response.json({error: "Not found"}, {status: 404});
 }
