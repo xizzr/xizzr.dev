@@ -30,15 +30,12 @@ export async function onRequest(context) {
   }
 
   if (url.pathname === '/server/command' && request.method === 'POST') {
-    if (request.headers.get('agentSecret') !== SECRET) // ✅ added auth
-      return new Response('Forbidden', { status: 403 });
-
     const { command, config } = await request.json();
     await env.SERVER_KV.put('server:command', command);
     await env.SERVER_KV.put('server:config', JSON.stringify(config));
     await env.SERVER_KV.put('server:status', command === 'start' ? 'starting' : 'stopping');
     return Response.json({ ok: true });
-  }
+}
 
   if (url.pathname === '/server/auth/steam/callback') {
     try {
