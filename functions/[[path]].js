@@ -71,5 +71,5 @@ export async function onRequest(context) {
     }
   }
 
-  return Response.json({ error: "Not found" }, { status: 404 });
+  return env.ASSETS.fetch(request);
 }
