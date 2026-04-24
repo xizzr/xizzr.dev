@@ -13,9 +13,25 @@
     <meta property="og:type" content="server"/>
   </head>
   <body>
-    work in progress. check back soon!
+    work in progress. check back soon!<br>
     <a href="https://steamcommunity.com/openid/login?openid.ns=http://specs.openid.net/auth/2.0&openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.return_to=https://xizzr.dev/server&openid.realm=https://xizzr.dev&openid.mode=checkid_setup">
       <img src="https://community.fastly.steamstatic.com/public/images/signinthroughsteam/sits_01.png">
     </a>
+    <br>
+    <button onclick="sendCommand('start')">▶ Start Server</button>
+    <button onclick="sendCommand('stop')">■ Stop Server</button>
+
+    <script>
+      async function sendCommand(cmd) {
+        await fetch("/server/command", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            command: cmd,
+            config: { map: "de_dust2", maxplayers: 10 }
+          })
+        });
+      }
+    </script>
  </body>
 </html>
