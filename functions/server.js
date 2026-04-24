@@ -3,7 +3,6 @@ const SECRET = '386779861b1b69cf5c4eaaaba99fc562'
 export async function onRequest(context) {
   const {request, env} = context;
   const url = new URL(request.url);
-  console.log(url)
 
   if(url.pathname === '/agent/poll'){
     if(request.headers.get('agentSecret') !== SECRET)
@@ -78,5 +77,5 @@ export async function onRequest(context) {
   //   return new Response("Internal Error", { status: 500 });
   // }
 
-  return Response.json({error: "Not found"}, {status: 404});
+  return Response.json({error: "Not found"}, {status: 404}, {'url': url});
 }
