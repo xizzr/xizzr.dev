@@ -3,7 +3,7 @@ export async function onRequest(context) {
   const url = new URL(request.url);
   const SECRET = '386779861b1b69cf5c4eaaaba99fc562';
 
-  if (url.pathname === '/agent/poll') {
+  if (url.pathname === '/server/agent/poll') {
     if (request.headers.get('agentSecret') !== SECRET)
       return new Response('Forbidden', { status: 403 });
 
@@ -13,7 +13,7 @@ export async function onRequest(context) {
     return Response.json({ command, config: JSON.parse(config) });
   }
 
-  if (url.pathname === '/agent/status' && request.method === 'POST') {
+  if (url.pathname === '/server/agent/status' && request.method === 'POST') {
     if (request.headers.get('agentSecret') !== SECRET)
       return new Response('Forbidden', { status: 403 });
 
@@ -40,7 +40,7 @@ export async function onRequest(context) {
     return Response.json({ ok: true });
   }
 
-  if (url.pathname === '/auth/steam/callback') {
+  if (url.pathname === '/server/auth/steam/callback') {
     try {
       const params = Object.fromEntries(url.searchParams);
 
