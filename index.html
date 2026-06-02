@@ -1,37 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>xizzr.dev</title>
-    <link rel="icon" href="https://i.ibb.co/99WnFGMJ/a.png">
-    <meta name="description" content="garfer"/>
-    <meta name="author" content="xizzr" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>xizzr.dev</title>
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #0a0a0a;
+      --surface:  #111111;
+      --surface2: #171717;
+      --border:   #1f1f1f;
+      --border2:  #2a2a2a;
+      --dim:      #404040;
+      --muted:    #606060;
+      --text:     #a0a0a0;
+      --bright:   #e8e8e8;
+      --white:    #f5f5f5;
+      --font:     'Karla', sans-serif;
+    }
 
-    <meta property="og:title" content="xizzr.dev"/>
-    <meta property="og:description" content="garfer"/>
-    <meta property="og:type" content="server"/>
-  </head>
-  <body>
-    work in progress. check back soon!<br>
-    <a href="https://steamcommunity.com/openid/login?openid.ns=http://specs.openid.net/auth/2.0&openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.return_to=https://xizzr.dev/server&openid.realm=https://xizzr.dev&openid.mode=checkid_setup">
-      <img src="https://community.fastly.steamstatic.com/public/images/signinthroughsteam/sits_01.png">
-    </a>
-    <br>
-    <button onclick="sendCommand('start')">▶ Start Server</button>
-    <button onclick="sendCommand('stop')">■ Stop Server</button>
+    *, *::before, *::after {box-sizing: border-box; margin: 0; padding: 0;}
 
-    <script>
-      async function sendCommand(cmd) {
-        await fetch("/server/command", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            command: cmd,
-            config: { map: "de_dust2", maxplayers: 10 }
-          })
-        });
-      }
-    </script>
- </body>
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      min-height: 100vh;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    #splash {
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 14px;
+      cursor: pointer;
+      transition: opacity 0.7s ease, visibility 0.7s ease;
+    }
+    #splash.out { opacity: 0; visibility: hidden; pointer-events: none; }
+
+    .sp-line {
+      width: 1px;
+      height: 48px;
+      background: var(--border2);
+    }
+
+    .sp-title {
+      font-size: 44px;
+      font-weight: 700;
+      letter-spacing: 9px;
+      color: var(--white);
+      text-align: center;
+    }
+
+    .sp-body {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--muted);
+      text-align: center;
+      line-height: 2;
+      max-width: 380px;
+    }
+    .sp-body a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+
+    .sp-bar-wrap {
+      width: 200px;
+      height: 1px;
+      background: var(--border2);
+      overflow: hidden;
+      position: relative;
+    }
+    .sp-bar-fill {
+      position: absolute;
+      inset: 0;
+      width: 0;
+      background: var(--white);
+      animation: barfill 4s linear forwards;
+    }
+    @keyframes barfill { to { width: 100%; } }
+
+    .sp-skip {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--border2);
+    }
+
+    #app {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 28px 80px;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    #app.on { opacity: 1; }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .h-title {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--white);
+    }
+
+    .h-sub {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--dim);
+      letter-spacing: 1px;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    #toast {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-left: 2px solid var(--white);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text);
+      padding: 10px 16px;
+      z-index: 80;
+      transform: translateX(130%);
+      transition: transform .3s ease;
+    }
+    #toast.show { transform: translateX(0); }
+    #toast.err  { border-left-color: #804040; }
+
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border2); }
+
+    input[type=number]::-webkit-inner-spin-button { opacity: 0.3; }
+  </style>
+</head>
+<body>
+
+<div id="splash">
+  <div class="sp-line"></div>
+  <div class="sp-title">xizzr.dev</div>
+  <div class="sp-body">
+    “The journey of a thousand miles begins with a single step.”<br>
+  <br>
+  </div>
+  <div class="sp-bar-wrap"><div class="sp-bar-fill"></div></div>
+  <div class="sp-skip">click anywhere</div>
+  <div class="sp-line"></div>
+</div>
+
+<div id="app">
+  <header>
+    <div>
+      <div class="h-title">Nothing to see here yet.</div>
+      <div class="h-sub">"知者不言, 言者不知." - 老子</div>
+    </div>
+  </header>
+</div>
+
+<div id="toast"></div>
+
+<script>
+let toastTimer;
+function toast(msg, err = false) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'show' + (err ? ' err' : '');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.className = '', 3000);
+}
+
+function dismissSplash() {
+  document.getElementById('splash').classList.add('out');
+  document.getElementById('app').classList.add('on');
+}
+setTimeout(dismissSplash, 4000);
+document.getElementById('splash').addEventListener('click', dismissSplash);
+
+</script>
+</body>
 </html>
